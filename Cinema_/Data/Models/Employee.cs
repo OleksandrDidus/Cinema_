@@ -7,8 +7,8 @@ namespace Cinema.Data.Models
 {
     public class Employee: BaseModel
     {
-        
         public string FullName { set; get; }
-        public string JobTtle { set; get; }//должность 
+
+        public string JobTitle { set; get; }//должность 
     }
 }

@@ -1,4 +1,4 @@
-﻿using Cinema_.Models;
+﻿using Cinema.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cinema_.Controllers
+namespace Cinema.Controllers
 {
     public class HomeController : Controller
     {

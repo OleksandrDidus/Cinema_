@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Cinema.Data.Models.Session>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Film.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Film.Name)
+                @Html.DisplayFor(modelItem => item.Film.Description)
+                @Html.DisplayFor(modelItem => item.Film.Studio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td> |
+                <a asp-action="Details" asp-controller="Film" asp-route-id="@item.Film.Id">Film Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Buy Ticket</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
