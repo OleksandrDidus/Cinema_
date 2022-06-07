@@ -1,5 +1,4 @@
 ﻿using Cinema.Data;
-using Cinema.Data.interfaces;
 using Cinema.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,13 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cinema_.Controllers
+namespace Cinema.Controllers
 {
     public class GenreController : Controller
     {
-        AppDBContent db;
+        CinemaContext db;
 
-        public GenreController(AppDBContent context)
+        public GenreController(CinemaContext context)
         {
             db = context;
         }

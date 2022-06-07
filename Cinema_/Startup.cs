@@ -1,24 +1,17 @@
 using Cinema.Data;
-using Cinema.Data.interfaces;
 using Cinema.Data.Repository;
-using Cinema_.Data.Repository;
+using Cinema.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Cinema_
+namespace Cinema
 {
     public class Startup
     {
-        private IConfigurationRoot _confstring;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,16 +23,27 @@ namespace Cinema_
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDBContent>(options =>
+            //// Context Configuraation
+            //services.AddDbContext<CinemaContext>(options =>
+            //{
+            //    options.EnableSensitiveDataLogging();
+            //    options.UseSqlServer(
+            //       Configuration.GetConnectionString("PostgreConnection"),
+            //       a => a.MigrationsAssembly(typeof(CinemaContext).Assembly.FullName));
+            //});
+            //services.AddControllersWithViews();
+
+            // Context Configuraation
+            services.AddDbContext<CinemaContext>(options =>
             {
                 options.EnableSensitiveDataLogging();
-                options.UseSqlServer(
-                   Configuration.GetConnectionString("DefaultConnection"),
-                   a => a.MigrationsAssembly(typeof(AppDBContent).Assembly.FullName));
+                options.UseNpgsql(
+                   Configuration.GetConnectionString("PostgreConnection"),
+                   a => a.MigrationsAssembly(typeof(CinemaContext).Assembly.FullName));
             });
             services.AddControllersWithViews();
-            services.AddTransient<IFilmGenre, GenreRepository>();
-            services.AddTransient<IFilms, FilmRepository>();
+
+            // Repositories 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 

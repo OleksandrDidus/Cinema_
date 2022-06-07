@@ -1,6 +1,6 @@
 using System;
 
-namespace Cinema_.Models
+namespace Cinema.Models
 {
     public class ErrorViewModel
     {

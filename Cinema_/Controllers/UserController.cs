@@ -1,5 +1,4 @@
 ﻿using Cinema.Data;
-using Cinema.Data.interfaces;
 using Cinema.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cinema_.Controllers
+namespace Cinema.Controllers
 {
     public class UserController : Controller
     {
         // GET: UserController
-        AppDBContent db;
-        public UserController(AppDBContent context)
+        CinemaContext db;
+        public UserController(CinemaContext context)
         {
             db = context;
         }

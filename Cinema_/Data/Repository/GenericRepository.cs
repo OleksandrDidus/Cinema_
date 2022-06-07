@@ -9,13 +9,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Cinema_.Data.Repository
+namespace Cinema.Data.Repository
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseModel
     {
-        protected readonly AppDBContent _context;
+        protected readonly CinemaContext _context;
 
-        public GenericRepository(AppDBContent context)
+        public GenericRepository(CinemaContext context)
         {
             _context = context;
         }
