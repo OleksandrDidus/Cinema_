@@ -95,7 +95,8 @@
                             <img src=@Html.DisplayFor(modelItem => item.Film.ImageUrl) mode alt="" width="387" height="600">
                             <div class="film_content">
                                 <div class="film_name">
-                                    <a href="https://localhost:44332/Usher/Usher" class="text">@Html.DisplayFor(modelItem => item.Film.Name)</a>
+                                    @*<a class="text">@Html.DisplayFor(modelItem => item.Film.Name)</a>*@
+                                    <a class="text" asp-action="Info" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Film.Name)</a> 
                                 </div>
                                 @*<div class="film_date">@Html.DisplayFor(modelItem => item.Film.ReleaseDate)</div>*@
 
