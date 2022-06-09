@@ -153,6 +153,12 @@ a.text {
     color: #00ff90;
 }
 
+.film_date {
+    text-decoration: none;
+    color: #00ff90;
+   
+}
+ 
 .nav {
     font-size: 14px;
     text-transform: uppercase;
@@ -198,7 +204,7 @@ a.text {
 /*    flex-direction: column;*/
     /*justify-content: center;*/
     padding-top: 100px;
-    background: #31344e;
+   /* background: #31344e;*/
     height: 750px;
     /*align-items:center;*/
 }
@@ -206,10 +212,12 @@ a.text {
 .film_item {
     width: 33%;
     position: relative;
-    height: 350px;
+    height: 600px;
     overflow: hidden;
     border-bottom: 1px solid #fff;
     border-right: 1px solid #fff;
+    margin:0;
+
 }
 
     .film_item:hover .film_content {
@@ -219,6 +227,8 @@ a.text {
 .film_item1 {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    height:auto; 
 }
 .film_content {
     width: 100%;
@@ -238,17 +248,26 @@ a.text {
 .film_name {
     font-size: 28px;
     line-height: 800px;
+    text-align:center;
+    width:auto;
+    height:350px;
 }
 
 }
 
 .img_film {
-    /*position: absolute;*/
-    width: 100%;
+   /* position: absolute;*/
+    width: 33%;
     height: 100%;
     object-fit: cover;
-    top: 50%;
+    /*top: 50%;
     left: 50%;
     z-index: 1;
-    transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);*/
+  /*  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;*/
 }
