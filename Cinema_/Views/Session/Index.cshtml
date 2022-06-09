@@ -72,8 +72,22 @@
                 </div>
             </div>
         </header>
+        <hr class="hr-shadow">
+        <style>
+            .hr-shadow {
+                background: #00ff90;
+                margin: 20px 0;
+                margin-top: 60px;
+                height: 3px;
+                border: none;
+                border-top: 1px solid #333;
+                box-shadow: 0 10px 10px -10px #8c8b8b inset;
+            }
+        </style>
+        <div></div>
         <div class="films">
             <div class="container">
+                <div class="intro_text">Фільми у прокаті: </div>
                 <div class="film_item1">
                     @foreach (var item in Model)
                     {
@@ -89,9 +103,9 @@
                         </div>
                     }
                 </div>
-                
+
             </div>
-            
+
         </div>
     </body>
 </html>
