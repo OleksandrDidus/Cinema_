@@ -210,8 +210,9 @@ a.text {
     position: relative;
     height: 600px;
     overflow: hidden;
-    margin-bottom:15px;
-    overflow:visible;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+    margin:0;
 
 }
 
@@ -281,4 +282,3 @@ a.text {
     color: #00ff90;
     font-weight:200;
 }
-
