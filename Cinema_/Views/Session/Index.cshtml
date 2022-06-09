@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Cinema.Data.Models.Session>
 
-@{
+@*@{
     ViewData["Title"] = "Index";
-}
+}*@
 
-<h1>Index</h1>
+@*<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -45,4 +45,53 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@
+
+<!DOCKTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+        <title>SpaceX</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="header_iner">
+                    <div class=" logo">
+                        <a href="https://localhost:44332" class="text">SpaceX</a>
+                    </div>
+                    <nav class="nav">
+                        <a class="nav_link" href="https://localhost:44332/User/Users">Пользователь </a>
+                        <a class="nav_link" href="https://localhost:44332/Cashier/Cashier">Касир </a>
+                        <a class="nav_link" href="https://localhost:44332/Usher/Usher">Капельдинер </a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="films">
+            <div class="container">
+                <div class="film_item1">
+                    @foreach (var item in Model)
+                    {
+                        <div class="film_item">
+                            <img src=@Html.DisplayFor(modelItem => item.Film.ImageUrl) mode alt="">
+                            <div class="film_content">
+                                <div class="film_name">
+                                    <a href="https://localhost:44332/Usher/Usher" class="text">@Html.DisplayFor(modelItem => item.Film.Name)</a>
+                                </div>
+                                <div class="film_date">@Html.DisplayFor(modelItem => item.Film.ReleaseDate)</div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+            </div>
+            
+        </div>
+    </body>
+</html>

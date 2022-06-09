@@ -23,24 +23,22 @@ namespace Cinema
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //// Context Configuraation
-            //services.AddDbContext<CinemaContext>(options =>
-            //{
-            //    options.EnableSensitiveDataLogging();
-            //    options.UseSqlServer(
-            //       Configuration.GetConnectionString("PostgreConnection"),
-            //       a => a.MigrationsAssembly(typeof(CinemaContext).Assembly.FullName));
-            //});
-            //services.AddControllersWithViews();
-
-            // Context Configuraation
             services.AddDbContext<CinemaContext>(options =>
             {
                 options.EnableSensitiveDataLogging();
-                options.UseNpgsql(
-                   Configuration.GetConnectionString("PostgreConnection"),
+                options.UseSqlServer(
+                   Configuration.GetConnectionString("AzureConnection"),
                    a => a.MigrationsAssembly(typeof(CinemaContext).Assembly.FullName));
             });
+
+            // Context Configuraation
+            //services.AddDbContext<CinemaContext>(options =>
+            //{
+            //    options.EnableSensitiveDataLogging();
+            //    options.UseNpgsql(
+            //       Configuration.GetConnectionString("PostgreConnection"),
+            //       a => a.MigrationsAssembly(typeof(CinemaContext).Assembly.FullName));
+            //});
             services.AddControllersWithViews();
 
             // Repositories 
