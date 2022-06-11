@@ -2,6 +2,7 @@
 using Cinema.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cinema.Controllers
@@ -25,6 +26,16 @@ namespace Cinema.Controllers
                                                     i => i.Include(b => b.Film));
             // Return that sessions to user
             return View(sessions);
+        }
+
+        public async Task<IActionResult> Info(int id)
+        {
+            // Return film Details
+            var film = (await _sessionRepository.GetAsync(f => f.Id == id,
+                            i => i.Include(b => b.Film))).FirstOrDefault(); 
+
+            // In case when model is not valid return validation messages
+            return View(film);
         }
     }
 }
