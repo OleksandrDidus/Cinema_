@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Cinema.Data.Models;
+using Cinema.Data.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +12,22 @@ namespace Cinema.Controllers
 {
     public class TicketController : Controller
     {
+
+        private readonly IGenericRepository<Ticket> _ticketRepository;
+
+        public TicketController(IGenericRepository<Ticket> ticketRepository)
+        {
+            _ticketRepository = ticketRepository;
+        }
         // GET: TicketController
-        public ActionResult Buy()
+        public ActionResult Index()
         {
             return View();
+        }
+        public async Task<IActionResult> Buy(int id)
+        {
+            var film = (await _ticketRepository.GetAsync(f => f.Id == id, i => i.Include(b => b.Sessions.Film))).FirstOrDefault();
+            return View(film);
         }
 
         // GET: TicketController/Details/5

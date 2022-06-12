@@ -1,2 +1,49 @@
 ﻿@model Cinema.Data.Models.Ticket
-qwertyuio
+<!DOCKTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+        <title>SpaceX</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="header_iner">
+                    <div class=" logo">
+                        <a href="https://localhost:44332" class="text">SpaceX</a>
+                    </div>
+                    @*<nav class="nav">
+                            <a class="nav_link" href="https://localhost:44377/User/Users">Пользователь </a>
+                            <a class="nav_link" href="https://localhost:44377/Cashier/Cashier">Касир </a>
+                            <a class="nav_link" href="https://localhost:44377/Usher/Usher">Капельдинер </a>
+                        </nav>*@
+                </div>
+            </div>
+        </header>
+        <hr class="hr-shadow">
+        <style>
+            .hr-shadow {
+                background: #00ff90;
+                margin: 20px 0;
+                margin-top: 50px;
+                height: 3px;
+                border: none;
+                border-top: 1px solid #333;
+                box-shadow: 0 10px 10px -10px #8c8b8b inset;
+            }
+        </style>
+        <div class="films_info">
+            <div class="films_img"><img src=@Html.DisplayFor(item => item.Sessions.Film.ImageUrl) mode alt="" width="350" height="600"></div>
+            <div class="films_content">
+                <div class="films_name"> @Html.DisplayFor(item => item.Sessions.Film.Name) </div>
+                <div class="films_data">  </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>
