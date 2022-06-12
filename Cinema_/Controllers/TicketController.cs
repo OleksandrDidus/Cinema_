@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Cinema.Data.Models;
+using Cinema.Data.Repository;
+using Cinema.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,31 +12,37 @@ namespace Cinema.Controllers
 {
     public class TicketController : Controller
     {
-        // GET: TicketController
-        public ActionResult Buy()
+        private readonly IGenericRepository<Session> _sessionRepository;
+
+        public TicketController(IGenericRepository<Session> sessionRepository)
         {
-            return View();
+            _sessionRepository = sessionRepository;
         }
 
         // GET: TicketController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Create(int id)
         {
-            return View();
+            var model = new BuyTicketViewModel();
+
+            model.Session = (await _sessionRepository.GetAsync(q => q.Id == id, 
+                i => i.Include(x => x.Film))).FirstOrDefault();
+
+            return View(model);
         }
 
-        // GET: TicketController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: TicketController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(BuyTicketViewModel model)
         {
+      
+
             try
             {
+                var modelprop = model.Session;
+
+
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch

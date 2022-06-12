@@ -8,10 +8,16 @@
 
         public decimal Price { set; get; }
 
-        public virtual Session Sessions { set; get; }
+        public virtual Session Session { set; get; }
 
-        public virtual Place Places { set; get; }
+        public int SessionId { set; get; }
+
+        public virtual Place Place { set; get; }
+
+        public int PlaceId { set; get; }
 
         public virtual Employee Employee { set; get; }
+
+        public int EmployeeId { set; get; }
     }
 }
