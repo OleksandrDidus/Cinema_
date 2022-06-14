@@ -1,10 +1,10 @@
 ﻿using Cinema.Data.Models;
 using Cinema.Data.Repository;
+using Cinema.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,43 +12,37 @@ namespace Cinema.Controllers
 {
     public class TicketController : Controller
     {
+        private readonly IGenericRepository<Session> _sessionRepository;
 
-        private readonly IGenericRepository<Ticket> _ticketRepository;
-
-        public TicketController(IGenericRepository<Ticket> ticketRepository)
+        public TicketController(IGenericRepository<Session> sessionRepository)
         {
-            _ticketRepository = ticketRepository;
-        }
-        // GET: TicketController
-        public ActionResult Index()
-        {
-            return View();
-        }
-        public async Task<IActionResult> Buy(int id)
-        {
-            var film = (await _ticketRepository.GetAsync(f => f.Id == id, i => i.Include(b => b.Sessions.Film))).FirstOrDefault();
-            return View(film);
+            _sessionRepository = sessionRepository;
         }
 
         // GET: TicketController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Create(int id)
         {
-            return View();
+            var model = new BuyTicketViewModel();
+
+            model.Session = (await _sessionRepository.GetAsync(q => q.Id == id, 
+                i => i.Include(x => x.Film))).FirstOrDefault();
+
+            return View(model);
         }
 
-        // GET: TicketController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: TicketController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(BuyTicketViewModel model)
         {
+      
+
             try
             {
+                var modelprop = model.Session;
+
+
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch

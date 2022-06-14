@@ -23,11 +23,6 @@ namespace Cinema.Controllers
             return View(films);
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create(Film film)
         {
@@ -50,7 +45,5 @@ namespace Cinema.Controllers
             // In case when model is not valid return validation messages
             return View(film);
         }
-
-
     }
 }
