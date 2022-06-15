@@ -3,28 +3,79 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h4>@Model.Session.Film.Name</h4>
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div class="form-group">
-                <label asp-for="PlaceId" class="control-label"></label>
-                <input asp-for="PlaceId" class="form-control" />
+<!DOCKTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+        <title>SpaceX</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="header_iner">
+                    <div class=" logo">
+                        <a href="https://localhost:44332" class="text">SpaceX</a>
+                    </div>
+                    <nav class="nav">
+                        @*<a class="nav_link" href="https://localhost:44377/User/Users">Пользователь </a>
+                        <a class="nav_link" href="https://localhost:44377/Cashier/Cashier">Касир </a>
+                        <a class="nav_link" href="https://localhost:44377/Usher/Usher">Капельдинер </a>*@
+                    </nav>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+        </header>
+        <hr class="hr-shadow">
+        <style>
+            .hr-shadow {
+                background: #00ff90;
+                margin: 20px 0;
+                margin-top: 50px;
+                height: 3px;
+                border: none;
+                border-top: 1px solid #333;
+                box-shadow: 0 10px 10px -10px #8c8b8b inset;
+            }
+        </style>
+
+
+        <div class="container_ticket">
+            <div class="film_ticket">
+                <div class="film_content_ticket">
+                    <div class="film_img_ticket">
+                        <img src=@Model.Session.Film.ImageUrl mode alt="" width="200" height="300">
+                    </div>
+                    <div class="film_info_ticket">
+                        <div class="film_name_ticket">@Model.Session.Film.Name  </div>
+                        <div class="film_start_ticket">@Model.Session.Start</div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Create">
+                        <div class="form-group">
+                            <label asp-for="PlaceId" class="control-label"></label>
+                            <input asp-for="PlaceId" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+        </div>
+    </body>
+   </html>
