@@ -5,7 +5,7 @@ namespace Cinema.Controllers
     public class CashierController : Controller
     {
         // GET: CashierController
-        public ActionResult Cashier()
+        public IActionResult Cashier()
         {
             return View();
         }

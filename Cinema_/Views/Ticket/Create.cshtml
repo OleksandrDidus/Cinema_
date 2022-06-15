@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="header_iner">
                     <div class=" logo">
-                        <a href="https://localhost:44332" class="text">SpaceX</a>
+                        <a href="https://localhost:44377" class="text">SpaceX</a>
                     </div>
                     <nav class="nav">
                         @*<a class="nav_link" href="https://localhost:44377/User/Users">Пользователь </a>
@@ -70,7 +70,7 @@
             </div>
 
             <div>
-                <a asp-action="Index">Back to List</a>
+                <a asp-area="" asp-controller="Session" asp-action="Info" asp-route-id="@Model.Session.Id">Back to List</a>
             </div>
 
             @section Scripts {
