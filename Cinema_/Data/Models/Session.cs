@@ -17,5 +17,10 @@ namespace Cinema.Data.Models
         public int FilmId { set; get; }
 
         public virtual IEnumerable<Ticket> Tickets{set;get; }
+
+        public int Price { get; set; }
+
+        public int HallNumber { get; set; }
+
     }
 }
