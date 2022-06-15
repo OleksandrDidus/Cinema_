@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="header_iner">
                     <div class=" logo">
-                        <a href="https://localhost:44332" class="text">SpaceX</a>
+                        <a href="https://localhost:44377" class="text">SpaceX</a>
                     </div>
                     <nav class="nav">
                         @*<a class="nav_link" href="https://localhost:44377/User/Users">Пользователь </a>
@@ -53,7 +53,13 @@
                             Дата реліза:   @Html.DisplayFor(model => model.Film.ReleaseDate)
                         </dt>
                         <dt class="col-sm-2">
-                            Жанр:   @Html.DisplayFor(model => model.Film.Genres)
+                            
+                            Жанр:
+                            @foreach (var item in Model.Film.Genres)
+                            {
+                                @Html.DisplayFor(modelItem => item.Name)                                
+                            }                          
+                            
                         </dt>
                         <dt class="col-sm-2">
                             Режисер:   @Html.DisplayFor(model => model.Film.Director)
