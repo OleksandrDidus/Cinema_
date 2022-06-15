@@ -69,7 +69,7 @@ namespace Cinema
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Film}/{action=Index}");
+                    pattern: "{controller=Session}/{action=Index}");
             });
         }
     }
