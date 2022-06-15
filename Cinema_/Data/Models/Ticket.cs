@@ -19,5 +19,9 @@
         public virtual Employee Employee { set; get; }
 
         public int EmployeeId { set; get; }
+
+        public string BookingCode { set; get; }
+        public string SoldTicketQRCode { set; get; }
+
     }
 }
