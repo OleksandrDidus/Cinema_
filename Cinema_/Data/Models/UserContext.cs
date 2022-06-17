@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Cinema.Data.Models
 {
-    public class UserContext:CinemaContext
-    {
-        public UserContext(DbContextOptions<CinemaContext> options)
-           :base(options)
-        {
-
-        }
+    //public class UserContext:CinemaContext
+    //{
+    //    //public DbSet<User> Users { get; set; }
+    //    //public UserContext(DbContextOptions<CinemaContext> options)
+    //    //   :base(options)
+    //    //{
+    //    //    Database.EnsureCreated();
+    //    //}
         
-    }
+    //}
 }

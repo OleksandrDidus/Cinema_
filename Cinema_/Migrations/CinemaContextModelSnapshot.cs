@@ -103,6 +103,21 @@ namespace Cinema.Migrations
                     b.ToTable("Places");
                 });
 
+            modelBuilder.Entity("Cinema.Data.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("Cinema.Data.Models.Session", b =>
                 {
                     b.Property<int>("Id")
@@ -193,7 +208,12 @@ namespace Cinema.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RolesId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RolesId");
 
                     b.ToTable("Users");
                 });
@@ -251,6 +271,15 @@ namespace Cinema.Migrations
                     b.Navigation("Session");
                 });
 
+            modelBuilder.Entity("Cinema.Data.Models.User", b =>
+                {
+                    b.HasOne("Cinema.Data.Models.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RolesId");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("FilmGenre", b =>
                 {
                     b.HasOne("Cinema.Data.Models.Film", null)
@@ -264,6 +293,11 @@ namespace Cinema.Migrations
                         .HasForeignKey("GenresId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Cinema.Data.Models.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Cinema.Data.Models.Session", b =>

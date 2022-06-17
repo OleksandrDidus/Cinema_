@@ -1,5 +1,6 @@
 ﻿using Cinema.Data.Models;
 using Cinema.Data.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Cinema.Controllers
             // Return that sessions to user
             return View(sessions);
         }
-
+        [Authorize]
         public async Task<IActionResult> Info(int id)
         {
             // Return film Details
