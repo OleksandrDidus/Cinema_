@@ -21,6 +21,7 @@
         public int EmployeeId { set; get; }
 
         public string BookingCode { set; get; }
+
         public string SoldTicketQRCode { set; get; }
 
     }

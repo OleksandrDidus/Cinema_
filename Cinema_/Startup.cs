@@ -1,6 +1,7 @@
 using Cinema.Data;
 using Cinema.Data.Repository;
 using Cinema.Data.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,11 @@ namespace Cinema
                    Configuration.GetConnectionString("AzureConnection"),
                    a => a.MigrationsAssembly(typeof(CinemaContext).Assembly.FullName));
             });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+              {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+               });
 
             // Context Configuraation
             //services.AddDbContext<CinemaContext>(options =>
@@ -62,7 +68,7 @@ namespace Cinema
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
