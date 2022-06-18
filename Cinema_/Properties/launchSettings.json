@@ -1,4 +1,5 @@
-﻿{
+{
+  "profiles": {
     "Cinema": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
@@ -8,5 +9,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
+  }
 }
+
 
