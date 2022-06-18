@@ -1,6 +1,5 @@
 using Cinema.Data;
 using Cinema.Data.Repository;
-using Cinema.Data.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,7 +44,7 @@ namespace Cinema
             //       Configuration.GetConnectionString("PostgreConnection"),
             //       a => a.MigrationsAssembly(typeof(CinemaContext).Assembly.FullName));
             //});
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             // Repositories 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

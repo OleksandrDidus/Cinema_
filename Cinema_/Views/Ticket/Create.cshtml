@@ -59,8 +59,8 @@
                 <div class="col-md-4">
                     <form asp-action="Create">
                         <div class="form-group">
-                            <label asp-for="PlaceId" class="control-label"></label>
-                            <input asp-for="PlaceId" class="form-control" />
+                           <label  class="control-label"> Select Place</label>
+                           <select name="places" class="form-control" asp-items="@ViewBag.places"></select>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-primary" />

@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Cinema.ViewModels; // пространство имен моделей RegisterModel и LoginModel
-using Cinema.Models; // пространство имен UserContext и класса User
+using Cinema.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Cinema.Data.Models;
 using Cinema.Data.Repository;
 using System.Linq;
+using Cinema.Enums;
 
 namespace Cinema.Controllers
 {
@@ -29,33 +29,45 @@ namespace Cinema.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
                 User user = (await _UserRepository.GetAsync(u => u.Login == model.Email)).FirstOrDefault();
+
+                // User role check
+                if((await _RoleRepository.GetAsync(r => r.Id == (int)Roles.User)).FirstOrDefault() == null)
+                {
+                    ModelState.AddModelError("", "Роль користувача відсутня! Необхідно дабавити її до Бази Даних!");
+                }
+
                 if (user == null)
                 {
-                    // добавляем пользователя в бд
+                    // Define User
                     user = new User { Login = model.Email, Password = model.Password };
-                    Role userRole = (await _RoleRepository.GetAsync(r => r.Name == "user")).FirstOrDefault();
-                    if (userRole != null)
-                        user.Role = userRole;
+                    user.RoleId = (int)Roles.User;
 
-                   await _UserRepository.AddAsync(user);
-                   
+                    // Add user
+                    await _UserRepository.AddAsync(user);
 
+                    // Autentificate user
                     await Authenticate(user); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    // Redirect to main page
+                    return RedirectToAction("Session", "Index");
                 }
                 else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                {
+                    // When user is exists then generate error
+                    ModelState.AddModelError("", "Пользователь с заданным логином уже существует!");
+                }
             }
+
             return View(model);
         }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -69,16 +81,20 @@ namespace Cinema.Controllers
             {
                 User user = (await _UserRepository.GetAsync(u => u.Login == model.Email && u.Password == model.Password,
                     x => x.Include(u => u.Role))).FirstOrDefault();
+                
                 if (user != null)
                 {
                     await Authenticate(user); // аутентификация
 
                     return RedirectToAction("Index", "Home");
                 }
+                
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
+
             return View(model);
         }
+
         private async Task Authenticate(User user)
         {
             // создаем один claim

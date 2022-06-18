@@ -25,6 +25,7 @@ namespace Cinema.Controllers
             var sessions = await _sessionRepository.GetAsync(
                                                     q => q.Start > System.DateTime.Now,
                                                     i => i.Include(b => b.Film));
+
             // Return that sessions to user
             return View(sessions);
         }
