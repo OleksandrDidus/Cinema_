@@ -1,4 +1,5 @@
 ﻿using Cinema.Data.Models;
+using System.Collections.Generic;
 
 namespace Cinema.ViewModels
 {
@@ -6,7 +7,7 @@ namespace Cinema.ViewModels
     {
         public Session Session { get; set; }
 
-        public int PlaceId { get; set; }
+        public IEnumerable<Place> Places { get; set; }
 
         public int UserId { get; set; }
     }

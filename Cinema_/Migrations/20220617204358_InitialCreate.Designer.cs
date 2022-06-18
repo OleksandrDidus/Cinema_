@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinema.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    [Migration("20220615091917_last_update")]
-    partial class last_update
+    [Migration("20220617204358_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,24 +20,6 @@ namespace Cinema.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Cinema.Data.Models.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employee");
-                });
 
             modelBuilder.Entity("Cinema.Data.Models.Film", b =>
                 {
@@ -105,6 +87,21 @@ namespace Cinema.Migrations
                     b.ToTable("Places");
                 });
 
+            modelBuilder.Entity("Cinema.Data.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("Cinema.Data.Models.Session", b =>
                 {
                     b.Property<int>("Id")
@@ -118,8 +115,8 @@ namespace Cinema.Migrations
                     b.Property<int>("FilmId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HallNumber")
-                        .HasColumnType("int");
+                    b.Property<byte>("Hall")
+                        .HasColumnType("tinyint");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -144,7 +141,7 @@ namespace Cinema.Migrations
                     b.Property<string>("BookingCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("CashierId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDestroyed")
@@ -165,13 +162,18 @@ namespace Cinema.Migrations
                     b.Property<string>("SoldTicketQRCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("CashierId");
 
                     b.HasIndex("PlaceId");
 
                     b.HasIndex("SessionId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
                 });
@@ -195,7 +197,12 @@ namespace Cinema.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -228,11 +235,9 @@ namespace Cinema.Migrations
 
             modelBuilder.Entity("Cinema.Data.Models.Ticket", b =>
                 {
-                    b.HasOne("Cinema.Data.Models.Employee", "Employee")
+                    b.HasOne("Cinema.Data.Models.User", "VerifiedCashier")
                         .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CashierId");
 
                     b.HasOne("Cinema.Data.Models.Place", "Place")
                         .WithMany()
@@ -246,11 +251,28 @@ namespace Cinema.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Employee");
+                    b.HasOne("Cinema.Data.Models.User", "AssignedUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AssignedUser");
 
                     b.Navigation("Place");
 
                     b.Navigation("Session");
+
+                    b.Navigation("VerifiedCashier");
+                });
+
+            modelBuilder.Entity("Cinema.Data.Models.User", b =>
+                {
+                    b.HasOne("Cinema.Data.Models.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("FilmGenre", b =>
@@ -266,6 +288,11 @@ namespace Cinema.Migrations
                         .HasForeignKey("GenresId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Cinema.Data.Models.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Cinema.Data.Models.Session", b =>

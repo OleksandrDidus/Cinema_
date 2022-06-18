@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Cinema.Controllers
 {
     public class CashierController : Controller
     {
         // GET: CashierController
-        public ActionResult Cashier()
+        [Authorize(Roles = "Cashier")]
+        public IActionResult Cashier()
         {
             return View();
         }
