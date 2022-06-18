@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Cinema.Data.Models
 {
-    public class Role:BaseModel
+    public class Role : BaseModel
     {
         public string Name { get; set; }
-        public List<User> Users { get; set; }
-        public Role()
-        {
-            Users = new List<User>();
-        }
+
+        public virtual List<User> Users { get; set; }
     }
 }

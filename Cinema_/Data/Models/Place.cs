@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Cinema.Enums;
 
 namespace Cinema.Data.Models
 {
     public class Place: BaseModel
     {
-        public int Hall { set; get; }
+        public Hall Hall { set; get; }
 
         public int Row { set; get; }
 
