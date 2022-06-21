@@ -1,0 +1,16 @@
+﻿body {
+    background-color: #1b1c1a !important;
+}
+.navbar-brand {
+    color: #00ff90 !important;
+    font-weight: 700;
+    font-size: 30px !important;
+    font-family: 'sans-serif'!important;
+}
+    .navbar-brand:hover {
+        opacity: 45%;
+    }
+.nav-link{
+    color:white !important;
+}
+
