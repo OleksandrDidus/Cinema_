@@ -1,5 +1,7 @@
 ﻿body {
     background-image: url(https://images.wallpaperscraft.ru/image/single/temnyy_pyatna_tekstura_fon_50355_1280x720.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
 }
 .form-horizontal {
     background: #fff;
@@ -146,4 +148,16 @@
 }
 .padding {
     padding-top: 150px;
+}
+.smth{
+    margin-left: -400px;
+    margin-bottom: 115px;
+}
+.form-horizontal .left {
+    text-align:left;
+    margin-left: 30px;
+}
+.form-horizontal .left2 {
+    margin-top: -20px;
+    margin-right: 25px;
 }

@@ -44,35 +44,38 @@
                 box-shadow: 0 10px 10px -10px #8c8b8b inset;
             }
         </style>*@
-        <div class="container_film">
+        <div class="container">
+            <div class="container_film">
 
-            <div class="film_full_img">
-                <img src=@Model.Film.ImageUrl mode alt="" width="250" height="400">
-            </div>
-            <div class="film_description">
-                <div class="film_description_name"> @Html.DisplayFor(model => model.Film.Name)</div>
-                <div class="film_full_info">
-                    <div>Дата реліза:   @Html.DisplayFor(model => model.Film.ReleaseDate)</div>
-                    <div>
-                        Жанр:
-                        @foreach (var item in Model.Film.Genres)
-                        {
-                            @Html.DisplayFor(modelItem => item.Name)
-                        }
+                <div class="film_full_img">
+                    <img src=@Model.Film.ImageUrl mode alt="" width="250" height="400">
+                </div>
+                <div class="film_description">
+                    <div class="film_description_name"> @Html.DisplayFor(model => model.Film.Name)</div>
+                    <div class="film_full_info">
+                        <div>Дата реліза:   @Html.DisplayFor(model => model.Film.ReleaseDate)</div>
+                        <div>
+                            Жанр:
+                            @foreach (var item in Model.Film.Genres)
+                            {
+                                @Html.DisplayFor(modelItem => item.Name)
+                            }
+                        </div>
+                        <div>Режисер:   @Html.DisplayFor(model => model.Film.Director)</div>
+                        <div>Студія:   @Html.DisplayFor(model => model.Film.Studio)</div>
+                        <div>Опис:   @Html.DisplayFor(model => model.Film.Description)</div>
                     </div>
-                    <div>Режисер:   @Html.DisplayFor(model => model.Film.Director)</div>
-                    <div>Студія:   @Html.DisplayFor(model => model.Film.Studio)</div>
-                    <div>Опис:   @Html.DisplayFor(model => model.Film.Description)</div>
+
+
+                    <div class="buy_ticket">
+                        <a asp-action="Index">Back to List</a>
+                        <a asp-area="" asp-controller="Ticket" asp-action="Create" asp-route-id="@Model.Id">Отримати Квиток</a>
+                    </div>
                 </div>
 
-                           
-                <div class="buy_ticket">
-                    <a asp-action="Index">Back to List</a>
-                    <a asp-area="" asp-controller="Ticket" asp-action="Create" asp-route-id="@Model.Id">Отримати Квиток</a>
-                </div>
+
             </div>
-            
-
         </div>
+        
     </body>
 </html>

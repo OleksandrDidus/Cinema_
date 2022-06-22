@@ -6,6 +6,8 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0 150px;
+    height:800px;
+    justify-content:center;
 }
 .film_full_img {
     padding-right: 20px;
