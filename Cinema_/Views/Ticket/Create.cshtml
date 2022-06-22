@@ -7,25 +7,26 @@
     Layout = "_Layout";
 }
 <!DOCKTYPE html>
+    <link rel="stylesheet" href="~/css/Create.css" />
     <html lang="en">
     <body>
-       
+
         @*<hr class="hr-shadow">
-        <style>
-            .hr-shadow {
-                background: #00ff90;
-                margin: 20px 0;
-                margin-top: 50px;
-                height: 3px;
-                border: none;
-                border-top: 1px solid #333;
-                box-shadow: 0 10px 10px -10px #8c8b8b inset;
-            }
-        </style>*@
+            <style>
+                .hr-shadow {
+                    background: #00ff90;
+                    margin: 20px 0;
+                    margin-top: 50px;
+                    height: 3px;
+                    border: none;
+                    border-top: 1px solid #333;
+                    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+                }
+            </style>*@
 
 
-        <div class="container_ticket">
-            <div class="film_ticket">
+        <div class="container_ticket ">
+            <div class="film_ticket justify-content-center">
                 <div class="film_content_ticket">
                     <div class="film_img_ticket">
                         <img src=@Model.Session.Film.ImageUrl mode alt="" width="200" height="300">
@@ -35,24 +36,21 @@
                         <div class="film_start_ticket">@Model.Session.Start</div>
                     </div>
                 </div>
-            </div>
+            @*</div>*@
 
-            <div class="row">
-                <div class="col-md-4">
-                    <form asp-action="Create">
-                        <div class="form-group">
-                            <label class="control-label"> Select Place</label>
-                            <select name="places" class="form-control" asp-items="@ViewBag.places"></select>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
-                        </div>
-                    </form>
-                </div>
+            @*<div class="row">*@
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div class="form-group">
+                        <label class="control-label"> Select Place</label>
+                        <select name="places" class="form-control" asp-items="@ViewBag.places"></select>
+                        @*</div>*@
+                        @*<div class="form-group">*@
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+                <a class="bck" asp-area="" asp-controller="Session" asp-action="Info" asp-route-id="@Model.Session.Id">Back to List</a>
             </div>
-
-            <div>
-                <a asp-area="" asp-controller="Session" asp-action="Info" asp-route-id="@Model.Session.Id">Back to List</a>
             </div>
 
             @section Scripts {

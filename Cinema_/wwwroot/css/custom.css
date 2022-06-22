@@ -295,39 +295,7 @@ a.text {
 
 }
 /*Ticket*/
-.container_ticket {
-    
-    max-width: 1200px;
-    width: 100%;
-    display:flex;
-    flex-wrap:nowrap;
-}
 
-.film_ticket {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-    height: 300px;
-    padding-right:55px;
-}
-.film_content_ticket {
-    display: flex;
-    justify-content: space-between;
-    position:absolute;
-    color:#fff;
-}
-.film_info_ticket{
-    margin-left:50px;
-}
-.film_name_ticket {
-    font-size: 22px;
-    font-weight: bold;
-    line-height: 28px;
-    
-}
-.film_start_ticket {
-
-}
 /*FilmDescription*/
 .container_film {
     max-width: 1200px;
