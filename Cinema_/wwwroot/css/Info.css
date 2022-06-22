@@ -8,7 +8,7 @@
     padding:0 150px;
     padding-top:48px;
     height: 100%;
-    margin-left:100px;
+    margin: auto;
    justify-content:center;
 }
 .film_full_img {
@@ -24,6 +24,7 @@
     font-size: 25px;
     font-weight: bold;
     line-height: 28px;
+    margin-bottom:15px;
 }
 
 .film_description {
@@ -54,6 +55,7 @@ ul {
 }
 li {
     list-style-type: none;
+    align-items:center;
 }
 .buy_ticket{
     margin-left:35px;

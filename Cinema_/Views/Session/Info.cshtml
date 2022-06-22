@@ -18,65 +18,6 @@
         <title>SpaceX</title>
     </head>
     <body>
-
-        @*<header class="header">
-          <div class="container">
-              <div class="header_iner">
-                  <div class=" logo">
-                      <a href="https://localhost:44377" class="text">SpaceX</a>
-                  </div>
-                  <nav class="nav">
-        <a class="nav_link" href="https://localhost:44377/User/Users">Пользователь </a>
-        <a class="nav_link" href="https://localhost:44377/Cashier/Cashier">Касир </a>
-        <a class="nav_link" href="https://localhost:44377/Usher/Usher">Капельдинер </a>
-        </nav>
-                </div>
-            </div>
-        </header>
-        <hr class="hr-shadow">
-        <style>
-            .hr-shadow {
-                background: #00ff90;
-                margin: 20px 0;
-                margin-top: 50px;
-                height: 3px;
-                border: none;
-                border-top: 1px solid #333;
-                box-shadow: 0 10px 10px -10px #8c8b8b inset;
-            }
-        </style>*@
-        @*<div class="container">
-            <div class="container_film">
-
-                <div class="film_full_img">
-                    <img src=@Model.Film.ImageUrl mode alt="" width="250" height="400">
-                </div>
-                <div class="film_description">
-                    <div class="film_description_name"> @Html.DisplayFor(model => model.Film.Name)</div>
-                    <div class="film_full_info">
-                        <div>Дата реліза:   @Html.DisplayFor(model => model.Film.ReleaseDate)</div>
-                        <div>
-                            Жанр:
-                            @foreach (var item in Model.Film.Genres)
-                            {
-                                @Html.DisplayFor(modelItem => item.Name)
-                            }
-                        </div>
-                        <div>Режисер:   @Html.DisplayFor(model => model.Film.Director)</div>
-                        <div>Студія:   @Html.DisplayFor(model => model.Film.Studio)</div>
-                        <div>Опис:   @Html.DisplayFor(model => model.Film.Description)</div>
-                    </div>
-
-
-                    <div class="buy_ticket">
-                        <a asp-action="Index">Back to List</a>
-                        <a asp-area="" asp-controller="Ticket" asp-action="Create" asp-route-id="@Model.Id">Отримати Квиток</a>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>*@
         @*<div class="container">*@
         <div class="container_film">
 
@@ -117,8 +58,8 @@
 
                 </div>
                 <div class="buy_ticket">
-                    <a asp-area="" asp-controller="Ticket" asp-action="Create" asp-route-id="@Model.Id" class="btn-">Отримати Квиток</a>
-                    <a asp-action="Index">Back to List</a>
+                    <a asp-area="" asp-controller="Ticket" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-outline-success" >Отримати Квиток</a>
+                    @*<a asp-action="Index">Back to List</a>*@
                 </div>
 
             </div>
@@ -129,37 +70,3 @@
 
     </body>
 </html>
-
-@*
-
-    <ul class="movie_credentials">
-            <li class="rating">
-                <p class="key">Дата реліза:</p>
-                <p class="val">@Html.DisplayFor(model => model.Film.ReleaseDate)</p>
-            </li>
-
-
-            <li>
-                <p class="key">Жанр:</p>
-                <p class="val">
-    @foreach (var item in Model.Film.Genres){
-                                @Html.DisplayFor(modelItem => item.Name)
-                                            }
-                </p>
-            </li>
-
-            <li>
-                <p class="key">Режисер:</p>
-                <p class="val">@Html.DisplayFor(model => model.Film.Director)</p>
-            </li>
-            <li>
-                <p class="key">Студія:</p>
-                <p class="val">@Html.DisplayFor(model => model.Film.Studio)</p>
-            </li>
-        </ul>
-
-         <div class="movie_description"><p>Культова франашиза продовжиться!</p>
-    <p>@Html.DisplayFor(model => model.Film.Description)</p></div>
-
-
-*@
