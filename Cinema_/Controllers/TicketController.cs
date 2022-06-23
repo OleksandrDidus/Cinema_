@@ -1,6 +1,7 @@
 ﻿using Cinema.Data.Models;
 using Cinema.Data.Repository;
 using Cinema.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,6 +25,7 @@ namespace Cinema.Controllers
         }
 
         // GET: TicketController/Details/5
+        [Authorize]
         public async Task<IActionResult> Create(int id)
         {
             var model = new BuyTicketViewModel();
