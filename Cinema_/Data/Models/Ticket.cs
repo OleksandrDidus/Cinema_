@@ -33,6 +33,5 @@ namespace Cinema.Data.Models
         public string BookingCode { set; get; }
 
         public string SoldTicketQRCode { set; get; }
-
     }
 }
