@@ -1,0 +1,71 @@
+﻿body {
+}
+.container_film {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding:0 150px;
+    padding-top:48px;
+    height: 100%;
+    margin: auto;
+   justify-content:center;
+}
+.film_full_img {
+    padding-right: 20px;
+    
+}
+.img {
+    border-radius: 5px;
+}
+
+.film_description_name {
+    margin-left: 35px;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 28px;
+    margin-bottom:15px;
+}
+
+.film_description {
+    color: #fff;
+    margin-right: 30px;
+    padding-bottom: 20px;
+}
+
+.film_full_info {
+    font-size: 14px;
+    color: #808080;
+    width: 500px;
+}
+
+.key{
+    width:180px;
+    float:left;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 35px;
+    text-decoration:none;
+}
+li {
+    list-style-type: none;
+    align-items:center;
+}
+.buy_ticket{
+    margin-left:35px;
+
+}
+.movie_description {
+    margin-top: 30px;
+    margin-left: 35px;
+}
+
+.movie_description {
+    text-align: justify;
+}

@@ -1,0 +1,39 @@
+﻿body {
+}
+
+.container_ticket {
+    max-width: 1200px;
+    width: 100%;
+    color: #00ff90 !important;
+    justify-content:center;
+}
+
+.film_ticket {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    padding-right: 55px;
+}
+
+.film_content_ticket {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.film_info_ticket {
+    margin-left: 50px;
+}
+
+.film_name_ticket {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 28px;
+}
+
+.film_start_ticket {
+}
+ .bck {
+    color: #00ff90!important;
+}

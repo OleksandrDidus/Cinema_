@@ -1,4 +1,5 @@
 ﻿using Cinema.Data.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 namespace Cinema.ViewModels
@@ -7,8 +8,9 @@ namespace Cinema.ViewModels
     {
         public Session Session { get; set; }
 
-        public IEnumerable<Place> Places { get; set; }
+        // Places to dropdown to select one Seat
+        public List<SelectListItem> Places { get; set; }
 
-        public int UserId { get; set; }
+        public int SelectPlaceId { get; set; }
     }
 }

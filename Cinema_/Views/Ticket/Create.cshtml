@@ -3,47 +3,30 @@
 @{
     ViewData["Title"] = "Create";
 }
+@{
+    Layout = "_Layout";
+}
 <!DOCKTYPE html>
+    <link rel="stylesheet" href="~/css/Create.css" />
     <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@100&display=swap" rel="stylesheet">
-        <title>SpaceX</title>
-    </head>
     <body>
-        <header class="header">
-            <div class="container">
-                <div class="header_iner">
-                    <div class=" logo">
-                        <a href="https://localhost:44377" class="text">SpaceX</a>
-                    </div>
-                    <nav class="nav">
-                        @*<a class="nav_link" href="https://localhost:44377/User/Users">Пользователь </a>
-                        <a class="nav_link" href="https://localhost:44377/Cashier/Cashier">Касир </a>
-                        <a class="nav_link" href="https://localhost:44377/Usher/Usher">Капельдинер </a>*@
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <hr class="hr-shadow">
-        <style>
-            .hr-shadow {
-                background: #00ff90;
-                margin: 20px 0;
-                margin-top: 50px;
-                height: 3px;
-                border: none;
-                border-top: 1px solid #333;
-                box-shadow: 0 10px 10px -10px #8c8b8b inset;
-            }
-        </style>
+
+        @*<hr class="hr-shadow">
+            <style>
+                .hr-shadow {
+                    background: #00ff90;
+                    margin: 20px 0;
+                    margin-top: 50px;
+                    height: 3px;
+                    border: none;
+                    border-top: 1px solid #333;
+                    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+                }
+            </style>*@
 
 
-        <div class="container_ticket">
-            <div class="film_ticket">
+        <div class="container_ticket ">
+            <div class="film_ticket justify-content-center">
                 <div class="film_content_ticket">
                     <div class="film_img_ticket">
                         <img src=@Model.Session.Film.ImageUrl mode alt="" width="200" height="300">
@@ -53,24 +36,26 @@
                         <div class="film_start_ticket">@Model.Session.Start</div>
                     </div>
                 </div>
-            </div>
+            @*</div>*@
 
-            <div class="row">
-                <div class="col-md-4">
-                    <form asp-action="Create">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div class="form-group">
+                        <label class="control-label"> Select Place</label>
+                        <select asp-for="SelectPlaceId" asp-items="@Model.Places">
+                            <option disabled="disabled">Please select one</option>
+                        </select>
                         <div class="form-group">
-                           <label  class="control-label"> Select Place</label>
-                           <select name="places" class="form-control" asp-items="@ViewBag.places"></select>
+                            <input type="hidden" asp-for="Session.Id" value="@Model.Session.Id" />
+                            <input type="hidden" asp-for="Session.Price" value="@Model.Session.Price" />
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-primary" />
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+                <a class="bck" asp-area="" asp-controller="Session" asp-action="Info" asp-route-id="@Model.Session.Id">Back to List</a>
             </div>
-
-            <div>
-                <a asp-area="" asp-controller="Session" asp-action="Info" asp-route-id="@Model.Session.Id">Back to List</a>
             </div>
 
             @section Scripts {
@@ -78,4 +63,4 @@
             }
         </div>
     </body>
-   </html>
+</html>

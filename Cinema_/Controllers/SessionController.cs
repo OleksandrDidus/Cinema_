@@ -29,7 +29,7 @@ namespace Cinema.Controllers
             // Return that sessions to user
             return View(sessions);
         }
-        [Authorize]
+        
         public async Task<IActionResult> Info(int id)
         {
             // Return film Details

@@ -16,29 +16,35 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <title>SpssssaceX</title>
     </head>
-    <body>
-        @*Check that session have Film items*@
-        @if(Model.Any())
-        {
-            <h4 class="text-center"><strong>Фільми у прокаті:</strong></h4>
-            <hr>
-        }
-        else
-        {
-            <div class="text-center">На данний момент немає фільмів у прокаті</div>
-        }
-        
-        <div class="row">
-            @*Read sessions to card*@
-            @foreach (var item in Model)
-            {             
-                <div class="col-md-4">
-                   <div class="movie-card">
-                      <img src="@Html.DisplayFor(modelItem => item.Film.ImageUrl)" class="card-img-top img-responsive">
-                      <a asp-controller="Session" asp-action="Info" asp-route-id="@item.Id" class="movie-name">@Html.DisplayFor(modelItem => item.Film.Name)</a>
-                   </div>
+    <body >
+        <div class="films">
+            <div class="container">
+                @*Check that session have Film items*@
+                @if (Model.Any())
+                {
+                    <h4 class="text-center"><strong class="intro_text">Фільми у прокаті:</strong></h4>
+                    @*<hr>*@
+                }
+                else
+                {
+                    <div class="text-center">На данний момент немає фільмів у прокаті</div>
+                }
+
+                <div class="row">
+                    @*Read sessions to card*@
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="movie-card">
+                                <img src="@Html.DisplayFor(modelItem => item.Film.ImageUrl)" class="card-img-top img-responsive">
+                                <a asp-controller="Session" asp-action="Info" asp-route-id="@item.Id" class="movie-name">@Html.DisplayFor(modelItem => item.Film.Name)</a>
+                            </div>
+                        </div>
+                    }
                 </div>
-            }
+
+            </div>
         </div>
+       
     </body>
-</html>
+    </html>

@@ -56,7 +56,7 @@ namespace Cinema.Controllers
                     await Authenticate(user); // аутентификация
 
                     // Redirect to main page
-                    return RedirectToAction("Session", "Index");
+                    return RedirectToAction("Index", "Session");
                 }
                 else
                 {
@@ -86,7 +86,7 @@ namespace Cinema.Controllers
                 {
                     await Authenticate(user); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Session");
                 }
                 
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -108,6 +108,11 @@ namespace Cinema.Controllers
                 ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Session");
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿body {
+    background-color: #1b1c1a !important;
+    margin-bottom:30px!important;
+}
+.navbar-brand {
+    color: #00ff90 !important;
+    font-weight: 700;
+    font-size: 30px !important;
+    font-family: 'sans-serif'!important;
+}
+    .navbar-brand:hover {
+        opacity: 45%;
+    }
+.nav-link{
+    color:white !important;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+}

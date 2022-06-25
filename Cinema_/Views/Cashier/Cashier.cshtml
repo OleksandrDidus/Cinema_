@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<Cinema.Data.Models.Session>
+
+@{
+    Layout = "_Layout";
+}
+
 <!DOCKTYPE html>
     <html lang="en">
     <head>
@@ -10,44 +15,20 @@
         <title>SpaceX</title>
     </head>
     <body>
-        <header class="header">
-            <div class="container">
-                <div class="header_iner">
-                    <div class=" logo">
-                        <a href="https://localhost:44377" class="text">SpaceX</a>
-                    </div>
-                    <nav class="nav">
-                        <a class="nav_link">Ви Касир! </a>
 
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <hr class="hr-shadow">
-        <style>
-            .hr-shadow {
-                background: #00ff90;
-                margin: 20px 0;
-                margin-top: 50px;
-                height: 3px;
-                border: none;
-                border-top: 1px solid #333;
-                box-shadow: 0 10px 10px -10px #8c8b8b inset;
-            }
-        </style>
         <div></div>
-        <h1>Всё хуйня!</h1>
+        <h1>Касир</h1>
         <form action="/" method="post">
-        <button>
-    Роздрукувати квиток
-        </button>
+            <button class="btn btn-outline-success">
+                Роздрукувати квиток
+            </button>
         </form>
-        
 
-        <footer class="border-top footer text-muted">
+
+        @*<footer class="border-top footer text-muted">
             <div class="container">
                 &copy; 2022 - Cinema
             </div>
-        </footer>
+        </footer>*@
     </body>
 </html>
