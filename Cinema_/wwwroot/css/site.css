@@ -19,3 +19,16 @@ html {
     line-height: 1.6;
     color: #000000;
 }
+.text-center {
+    color: #00ff90;
+    display: flex;
+    justify-content: center;
+    
+    margin-top: 25px;
+}
+.form-control {
+    margin-right: 15px;
+    height: 40px;
+    width: 250px;
+    text-align: center;
+}
