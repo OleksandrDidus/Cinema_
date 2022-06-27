@@ -12,5 +12,6 @@ namespace Cinema.ViewModels
         public List<SelectListItem> Places { get; set; }
 
         public int SelectPlaceId { get; set; }
+        public bool SelectPayment { get; set; }
     }
 }

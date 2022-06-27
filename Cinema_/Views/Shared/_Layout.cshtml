@@ -25,7 +25,13 @@
                         <li class="nav-item">
                             @if (User.IsInRole(nameof(Roles.Cashier)))
                             {
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cashier" asp-action="Cashier">Verify Ticket</a>
+                                <a class="green nav-link" asp-area="" asp-controller="Cashier" asp-action="Cashier">Verify Ticket</a>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole(nameof(Roles.Usher)))
+                            {
+                                <a class="green nav-link" asp-area="" asp-controller="Ushers" asp-action="Usher">Verify QR-Code</a>
                             }
                         </li>
                         <li class="nav-item">
@@ -41,7 +47,7 @@
                         <li class="nav-item">
                             @if (@User.Identity.IsAuthenticated)
                             {
-                            <a asp-area="" asp-controller="Account" asp-action="Logout" class="btn btn-outline-success">Logout</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Logout" class="btn btn-outline-success">Logout</a>
                             }
                         </li>
                     </ul>

@@ -35,7 +35,7 @@
                     @foreach (var item in Model)
                     {
                         <div class="col-md-4">
-                            <div class="movie-card">
+                            <div class="movie-card ggg">
                                 <img src="@Html.DisplayFor(modelItem => item.Film.ImageUrl)" class="card-img-top img-responsive">
                                 <a asp-controller="Session" asp-action="Info" asp-route-id="@item.Id" class="movie-name">@Html.DisplayFor(modelItem => item.Film.Name)</a>
                             </div>

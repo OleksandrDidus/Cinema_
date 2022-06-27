@@ -34,6 +34,7 @@
                     <div class="film_info_ticket">
                         <div class="film_name_ticket">@Model.Session.Film.Name  </div>
                         <div class="film_start_ticket">@Model.Session.Start</div>
+                        <div class="film_name_ticket">@Model.Session.Price Грн</div>
                     </div>
                 </div>
             @*</div>*@
@@ -49,6 +50,12 @@
                             <input type="hidden" asp-for="Session.Id" value="@Model.Session.Id" />
                             <input type="hidden" asp-for="Session.Price" value="@Model.Session.Price" />
                         </div>
+                        <label class="control-label"> Select payment</label>
+                        <select asp-for="SelectPayment" name="MyList" > 
+                            <option disabled="disabled">Please select one</option>
+                            <option name ="buy" value="1" accesskey=" ">Придбати квиток</option>
+                            <option name ="booking" value="0">Забронювати квиток</option>
+                        </select>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-primary" />
                         </div>

@@ -19,4 +19,10 @@
     bottom: 0;
     width: 100%;
 }
+.green {
+    color: #00ff90 !important;
+}
+.green:hover
+{
+    opacity: 50%;
 }

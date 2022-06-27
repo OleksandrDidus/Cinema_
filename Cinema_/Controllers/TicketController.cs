@@ -81,29 +81,82 @@ namespace Cinema.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync(BuyTicketViewModel model)
         {
-            try
+            var value = Request.Form.FirstOrDefault(p => p.Key == "MyList").Value;
+            if(value == "1")
             {
-                Ticket ticket = new Ticket()
+                try
                 {
-                    IsDestroyed = false,
-                    SessionId = model.Session.Id,
-                    IsPaid = false,
-                    Price = model.Session.Price,
-                    PlaceId = model.SelectPlaceId,
-                    UserId = (await _userManager.GetAsync(q => q.Login == User.Identity.Name))
-                        .FirstOrDefault().Id,
-                    BookingCode = GetRandomCode(5),
-                    SoldTicketQRCode = GetRandomCode(5)
-                };
+                    Ticket ticket = new Ticket()
+                    {
+                        IsDestroyed = false,
+                        SessionId = model.Session.Id,
+                        IsPaid = true,
+                        Price = model.Session.Price,
+                        PlaceId = model.SelectPlaceId,
+                        UserId = (await _userManager.GetAsync(q => q.Login == User.Identity.Name))
+                            .FirstOrDefault().Id,
+                        BookingCode = null,
+                        SoldTicketQRCode = GetRandomCode(5)
+                    };
 
-                await _ticketRepository.AddAsync(ticket);
+                    await _ticketRepository.AddAsync(ticket);
 
-                return Redirect("/Session/Index");
+                    return Redirect("/Session/Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
-                return View();
+                try
+                {
+                    Ticket ticket = new Ticket()
+                    {
+                        IsDestroyed = false,
+                        SessionId = model.Session.Id,
+                        IsPaid = false,
+                        Price = model.Session.Price,
+                        PlaceId = model.SelectPlaceId,
+                        UserId = (await _userManager.GetAsync(q => q.Login == User.Identity.Name))
+                            .FirstOrDefault().Id,
+                        BookingCode = GetRandomCode(5),
+                        SoldTicketQRCode = null
+                    };
+
+                    await _ticketRepository.AddAsync(ticket);
+
+                    return Redirect("/Session/Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
+            //try
+            //{
+            //    Ticket ticket = new Ticket()
+            //    {
+            //        IsDestroyed = false,
+            //        SessionId = model.Session.Id,
+            //        IsPaid = false,
+            //        Price = model.Session.Price,
+            //        PlaceId = model.SelectPlaceId,
+            //        UserId = (await _userManager.GetAsync(q => q.Login == User.Identity.Name))
+            //            .FirstOrDefault().Id,
+            //        BookingCode = GetRandomCode(5),
+            //        SoldTicketQRCode = GetRandomCode(5)
+            //    };
+
+            //    await _ticketRepository.AddAsync(ticket);
+
+            //    return Redirect("/Session/Index");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         public static string GetRandomCode(int length)
@@ -170,6 +223,23 @@ namespace Cinema.Controllers
             //}
         }
 
+        public async Task<ActionResult> CheckQRCode(string bookCode)
+        {
+            //var ticket = (await _ticketRepository.GetAsync(u => u.BookingCode == altitudeString,
+            //    i =>i.Include(x=>x.Session).ThenInclude(x=>x.Film))).FirstOrDefault();
+
+            var ticker = await this._dbcontext.Tickets.FirstOrDefaultAsync(i => i.SoldTicketQRCode == bookCode);
+            if (ticker is not null)
+            {
+                ticker.IsDestroyed = true;
+                await this._dbcontext.SaveChangesAsync();
+                return Content("QR-Код вірний, можете пропустити клієнта");
+            }
+            else
+            {
+                return Content("Такого QR-коду не існує!");
+            }
+        }
         // GET: TicketController/Edit/5
         public ActionResult Edit(int id)
         {

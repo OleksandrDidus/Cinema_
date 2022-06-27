@@ -1,10 +1,60 @@
-﻿@{
+﻿@model IEnumerable<Cinema.Data.Models.Ticket>
+@{
     ViewData["Title"] = "Home Page";
 }
 @{
     Layout = "_Layout";
 }
-<div class="text-center">
-    <h1 class="display-4">Ваші квитки: </h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCKTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/css/session.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <title>SpssssaceX</title>
+    </head>
+    <body>
+        <div class="films">
+            <div class="container">
+                @*Check that session have Film items*@
+                @if (Model.Any())
+                {
+                    <h4 class="text-center"><strong class="intro_text">Ваші квитки</strong></h4>
+                }
+                else
+                {
+                    <div class="text-center">На данний момент ви не отримали ні одного квитка</div>
+                }
+
+                <div class="row">
+                    @*Read sessions to card*@
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="movie-card">
+                                <h5>Назва фільму: </h5>@Html.DisplayFor(modelItem => item.Session.Film.Name)
+                                <h5>Час початку сеансу: </h5>@Html.DisplayFor(modelItem => item.Session.Start)
+                                @if (item.BookingCode != null)
+                                {<h5>Код заброньованого квитка: </h5>@Html.DisplayFor(modelItem => item.BookingCode)}
+                                @if (item.SoldTicketQRCode != null)
+                                {<h5>QR-код придбаного квитка: </h5>@Html.DisplayFor(modelItem => item.SoldTicketQRCode)}
+                                <h5>Зал: </h5>@Html.DisplayFor(modelItem => item.Place.Hall)
+                                <h5>Ряд: </h5>@Html.DisplayFor(modelItem => item.Place.Row)
+                                <h5>Місце: </h5>@Html.DisplayFor(modelItem => item.Place.Seat)
+
+                                @*<img src="@Html.DisplayFor(modelItem => item.Film.ImageUrl)" class="card-img-top img-responsive">
+        <a asp-controller="Session" asp-action="Info" asp-route-id="@item.Id" class="movie-name">@Html.DisplayFor(modelItem => item.Film.Name)</a>*@
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>

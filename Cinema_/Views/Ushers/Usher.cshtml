@@ -1,0 +1,24 @@
+﻿@model string
+@{
+    Layout = "_Layout";
+}
+<!DOCKTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+        <title>SpaceX</title>
+    </head>
+    <body>
+
+        <div></div>
+        <h1 class="text-center">Капельдинер</h1>
+        <form class="text-center" asp-action="CheckQRCode" asp-controller="Ticket" method="post">
+            <input class="form-control justify-content-center" type="text" name="bookCode" id="bookCode" placeholder="QR-Код квитка">
+            <button type="submit" value="Перевірити QR-код квитка" class="btn btn-outline-success justify-content-center">Перевірити QR-код квитка</button>
+        </form>
+    </body>
+</html>

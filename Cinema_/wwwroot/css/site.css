@@ -32,3 +32,10 @@ html {
     width: 250px;
     text-align: center;
 }
+.col-md-4 {
+    text-align: center;
+    color:white!important;
+}
+.movie-card {
+    background-color: #26843b!important;
+}
