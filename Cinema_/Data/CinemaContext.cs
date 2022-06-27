@@ -28,5 +28,6 @@ namespace Cinema.Data
         {
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

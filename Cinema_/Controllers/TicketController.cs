@@ -183,10 +183,17 @@ namespace Cinema.Controllers
             var ticker = await this._dbcontext.Tickets.FirstOrDefaultAsync(i => i.BookingCode == bookCode);
             if(ticker is not null)
             {
-                ticker.IsPaid = true;
-                ticker.IsDestroyed = true;
-                await this._dbcontext.SaveChangesAsync();
-                return Content("Код вірний, квиток надруковано!");
+                if (ticker.IsDestroyed == true)
+                {
+                    return Content("Код вірний, але квиток вже використано!");
+                }
+                else
+                {
+                    ticker.IsPaid = true;
+                    ticker.IsDestroyed = true;
+                    await this._dbcontext.SaveChangesAsync();
+                    return Content("Код вірний, квиток надруковано!");
+                }
             }
             else
             {
@@ -231,9 +238,16 @@ namespace Cinema.Controllers
             var ticker = await this._dbcontext.Tickets.FirstOrDefaultAsync(i => i.SoldTicketQRCode == bookCode);
             if (ticker is not null)
             {
-                ticker.IsDestroyed = true;
-                await this._dbcontext.SaveChangesAsync();
-                return Content("QR-Код вірний, можете пропустити клієнта");
+                if (ticker.IsDestroyed == true)
+                {
+                    return Content("QR-Код вірний, але квиток вже використано!");
+                }
+                else
+                {
+                    ticker.IsDestroyed = true;
+                    await this._dbcontext.SaveChangesAsync();
+                    return Content("QR-Код вірний, можете пропустити клієнта");
+                }
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using Cinema.Data.Models;
+﻿using Cinema.Data;
+using Cinema.Data.Models;
 using Cinema.Data.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +12,22 @@ namespace Cinema.Controllers
     public class SessionController : Controller
     {
         private readonly IGenericRepository<Session> _sessionRepository;
+        private readonly CinemaContext _dbContext;
 
-        public SessionController(IGenericRepository<Session> sessionRepository)
+        public SessionController(IGenericRepository<Session> sessionRepository, CinemaContext dbContext)
         {
             _sessionRepository = sessionRepository;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-
+            //System.Collections.Generic.List<Session> studentList = _dbContext.Sessions.FromSqlRaw("Select * from Students")
+            //            .ToList<Session>();
             // Get all future sessions
+            //_sessionRepository. .Initialize(false);
+            //context.Database.Log = Console.WriteLine;
             var sessions = await _sessionRepository.GetAsync(
                                                     q => q.Start > System.DateTime.Now,
                                                     i => i.Include(b => b.Film));

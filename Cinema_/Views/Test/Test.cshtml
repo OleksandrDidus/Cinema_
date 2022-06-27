@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Cinema.Data.Models.Session>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/session.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>SpssssaceX</title>
+</head>
+<div class="row">
+    @*Read sessions to card*@
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="movie-card ggg">
+                <div> @Html.DisplayFor(modelItem => item.Price)</div>
+                <img src="@Html.DisplayFor(modelItem => item.Film.ImageUrl)" class="card-img-top img-responsive">
+                <a asp-controller="Session" asp-action="Info" asp-route-id="@item.Id" class="movie-name">@Html.DisplayFor(modelItem => item.Film.Name)</a>
+            </div>
+        </div>
+    }
+</div>
