@@ -4,14 +4,16 @@ using Cinema.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cinema.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    partial class CinemaContextModelSnapshot : ModelSnapshot
+    [Migration("20220628085037_View")]
+    partial class View
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,17 +25,17 @@ namespace Cinema.Migrations
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Login");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TicketsCount")
-                        .HasColumnType("int")
-                        .HasColumnName("TicketsCount");
+                        .HasColumnType("int");
 
-                    b.ToView("CustomData");
+                    b.HasKey("Id");
+
+                    b.ToView("CustomModel");
                 });
 
             modelBuilder.Entity("Cinema.Data.Models.Film", b =>

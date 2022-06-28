@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinema.Migrations
 {
     [DbContext(typeof(CinemaContext))]
-    [Migration("20220617204358_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220628090047_SomeAnother")]
+    partial class SomeAnother
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,23 @@ namespace Cinema.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Cinema.Data.Models.CustomModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Login");
+
+                    b.Property<int>("TicketsCount")
+                        .HasColumnType("int")
+                        .HasColumnName("TicketsCount");
+
+                    b.ToView("CustomData");
+                });
 
             modelBuilder.Entity("Cinema.Data.Models.Film", b =>
                 {
@@ -73,8 +90,8 @@ namespace Cinema.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Hall")
-                        .HasColumnType("int");
+                    b.Property<byte>("Hall")
+                        .HasColumnType("tinyint");
 
                     b.Property<int>("Row")
                         .HasColumnType("int");

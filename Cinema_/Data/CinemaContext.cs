@@ -1,5 +1,6 @@
 ﻿using Cinema.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Entity.Infrastructure;
 
 namespace Cinema.Data
 {
@@ -9,6 +10,8 @@ namespace Cinema.Data
         {
 
         }
+
+        public DbSet<CustomModel> CustomModel { get; set; }
 
         public DbSet<Genre> Genre { get; set; }
 
@@ -27,6 +30,16 @@ namespace Cinema.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder
+                .Entity<CustomModel>(
+            eb =>
+            {
+                eb.HasNoKey();
+                eb.ToView("CustomData");
+                eb.Property(v => v.TicketsCount).HasColumnName("TicketsCount");
+                eb.Property(v => v.Login).HasColumnName("Login");
+            });
         }
 
     }
