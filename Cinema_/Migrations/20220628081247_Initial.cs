@@ -8,16 +8,13 @@ namespace Cinema.Migrations
         {
             migrationBuilder.Sql(@"
                 create view CustomData AS
-                    SELECT
-                    us.Id AS Id,
-                    us.Login AS Login,
-                    COUNT(tc.Id) AS TicketsCount
-                FROM
-                    Tickets as tc
-                    left join Users as us on tc.UserId = us.Id
-                GROUP BY
-                    us.Id,
-                    us.Login
+                    select  us.Login, sum(tc.Price) as TotalPaid
+                    from Tickets as tc
+                    left join Users as us
+                    on tc.UserId  = us.Id
+                    where tc.IsPaid = 1
+                    group by  us.Login
+                    order by TotalPaid desc;
                 ");
         }
 

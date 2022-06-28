@@ -12,9 +12,6 @@
     <title>Index</title>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -22,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Login)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TicketsCount)
+                @Html.DisplayNameFor(model => model.TotalPaid)
             </th>
             <th></th>
         </tr>
@@ -34,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Login)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TicketsCount)
+                @Html.DisplayFor(modelItem => item.TotalPaid)
             </td>
         </tr>
 }

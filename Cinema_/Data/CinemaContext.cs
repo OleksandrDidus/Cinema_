@@ -37,7 +37,7 @@ namespace Cinema.Data
             {
                 eb.HasNoKey();
                 eb.ToView("CustomData");
-                eb.Property(v => v.TicketsCount).HasColumnName("TicketsCount");
+                eb.Property(v => v.TotalPaid).HasColumnName("TotalPaid");
                 eb.Property(v => v.Login).HasColumnName("Login");
             });
         }

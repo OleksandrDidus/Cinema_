@@ -25,7 +25,7 @@ namespace Cinema.Controllers
                     .CustomModel.ToListAsync();
 
             // Top one
-            values = values.OrderByDescending(t => t.TicketsCount).Take(1).ToList();
+            values = values.OrderByDescending(t => t.TotalPaid).Take(5).ToList();
 
             return View(values);
         }

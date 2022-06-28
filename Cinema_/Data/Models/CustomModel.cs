@@ -4,6 +4,6 @@
     {
         public string Login {get ; set; }
 
-        public int TicketsCount { get; set; }
+        public decimal TotalPaid { get; set; }
     }
 }
