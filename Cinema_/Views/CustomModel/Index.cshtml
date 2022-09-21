@@ -16,10 +16,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Login)
+                @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalPaid)
+                @Html.DisplayNameFor(model => model.sum)
             </th>
             <th></th>
         </tr>
@@ -28,10 +28,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Login)
+                @Html.DisplayFor(modelItem => item.name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalPaid)
+                @Html.DisplayFor(modelItem => item.sum)
             </td>
         </tr>
 }

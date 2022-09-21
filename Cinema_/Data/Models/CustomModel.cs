@@ -2,8 +2,8 @@
 {
     public class CustomModel
     {
-        public string Login {get ; set; }
+        public string name {get ; set; }
 
-        public decimal TotalPaid { get; set; }
+        public int sum { get; set; }
     }
 }
